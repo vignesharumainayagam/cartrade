@@ -1,0 +1,368 @@
+{% extends web_base_template_path %}
+{% block head %}
+        {% block meta_block %}
+         <meta itemprop="description" name="description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+         <meta itemprop="keywords" name="keywords" content="{% if MetaKeywords %}{{MetaKeywords}}{% endif %}"  />
+         <meta property="og:url" content="{{CurrentUrl}}">
+         <meta property="og:type" content="website">
+         <meta property="og:title"  content="{% if title %}{{title}}{% endif %}" >
+         <meta property="og:description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+        {% endblock %}
+ {% endblock %}
+{% block content %}
+      <div class="bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li><a href="/{{item_category_route}}"><i class="icon fa fa-home"></i></a>
+                                </li>
+                                <li><a href="/{{item_brand_route}}-{{item_category_route}}">{{item_brand}}</a>
+                                </li>
+                                <li><a href="/{{item_brand_route}}-{{item_category_route}}/{{item_route}}">{{item_title}}</a></li>
+                                </li>
+                                <li class="active">{{variant_title}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end breadcrumb-->
+            <main class="l-main-content">
+                <div class="container">
+                    <div class="row">
+                         <div class="col-md-9">
+                            <section class="b-car-details">
+                                <div class="b-car-details__header">
+                         
+                                    <h2 class="b-car-details__title">{{item_brand}} {{item_title}} {{variant_title}}</h2>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                 <div class="entry-media">
+                                       
+                                            <img class="img-responsive" src="{{item_featured_image}}" alt="Foto" />
+                             
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-top: 20px;">
+                                    <div class="col-md-12" style="padding-bottom: 20px;">
+                                        
+                                             <div class="b-car-info__price" style="font-size: 24px;border: 3px solid #eee;background: transparent;color: #222;">
+                                              <span style="font-family: 'Hind';">₹ </span>
+                                              {% if item_variants_price_in_current_city %}
+
+                                              {{item_variants_price_in_current_city}}
+
+                                              {% else %}
+
+                                              {{item_variants_price_in_delhi}}
+
+                                              {% endif %}
+                                              
+                                    </div>
+                                    </div>
+
+
+                                        <div class="col-md-6">
+                
+                                       <select class="selectpicker" data-width="100%">
+                                        <option>Select Variant</option>
+                                        {% for i in item_variants%}
+
+                                        <option>{{i.variant_name}}</option>
+
+                                        {% endfor %}
+                     
+                                    </select>
+
+                                   
+                                     </div>
+
+                                    <div class="col-md-6">
+                                          <select class="selectpicker" data-width="100%">
+                                        <option>Select Location</option>
+
+                                        {% for i in locations%}
+
+                                        <option>{{i.city_name}}</option>
+
+                                        {% endfor %} 
+                                    </select>
+
+                                    </div>
+                                    <a href="{{path}}/images">
+                                    <div style="margin-left: 15px;">
+                                    <button class="btn btn-lg btn-primary">Open Gallery</button>
+                                    </div></a>
+
+                                </div>
+
+                                 <div class="col-md-12">
+                                <ul class="b-car-details__nav nav nav-tabs bg-primary">
+                                    <li class="active"><a href="#specifications" data-toggle="tab">Dimensions &amp; WEIGHT</a>
+                                    </li>
+                                    <li><a href="#capacity" data-toggle="tab">CAPACITY</a>
+                                    </li>
+                                    <li><a href="#enginetransmission" data-toggle="tab">ENGINE &amp; TRANSMISSION</a>
+                                    </li>
+                             
+                               
+                                </ul>
+                                <div class="b-car-details__tabs tab-content">
+                                    <div class="tab-pane active fade in" id="specifications" style="    padding: 20px 20px 20px;">
+                                        <h6 style="margin-bottom:20px">Dimensions &amp; WEIGHT</h6>
+                                     <table class="table">
+                                   
+                                          <tbody>
+
+                                            <tr>
+                                              <th scope="row">Length</th>
+                                              <td>{{variant.length}}</td>
+                                            </tr>
+
+                                            <tr>
+                                              <th scope="row">Kerb Weight</th>
+                                              <td>{{variant.kerb_weight}} mm</td>
+                                            </tr>
+
+                                            <tr>
+                                              <th scope="row">Wheelbase</th>
+                                              <td>{{variant.wheelbase}} mm</td>
+                                            </tr>
+
+                                            <tr>
+                                              <th scope="row">Width</th>
+                                              <td>{{variant.width}} mm</td>
+                                            </tr>
+
+                                            <tr>
+                                              <th scope="row">Ground Clearance</th>
+                                              <td>{{variant.ground_clearance}} mm</td>
+                                            </tr>
+
+                                            <tr>
+                                              <th scope="row">height</th>
+                                              <td>{{variant.height}} mm</td>
+                                            </tr>
+
+
+                                          </tbody>
+                                    </table>
+                                      
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="capacity" style="    padding: 20px 20px 20px;">
+                                      <h6 style="margin-bottom:20px">CAPACITY</h6>
+                                     <table class="table">
+                                   
+                                          <tbody>
+
+                                            <tr>
+                                              <th scope="row">Doors</th>
+                                              <td>{{variant.doors}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Bootspace</th>
+                                              <td>{{variant.bootspace}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Seating Capacity</th>
+                                              <td>{{variant.seating_capacity}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">No of Seating Rows</th>
+                                              <td>{{variant.no_of_seating}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">LengFuel Tank Capacityth</th>
+                                              <td>{{variant.fuel_tank}} mm</td>
+                                            </tr>
+
+                                            
+
+
+                                          </tbody>
+                                    </table>
+                                    </div>
+
+                                    <div class="tab-pane fade in" id="enginetransmission" style="    padding: 20px 20px 20px;">
+                                      <h6 style="margin-bottom:20px">ENGINE &amp; TRANSMISSION</h6>
+                                     <table class="table">
+                                   
+                                          <tbody>
+
+                                            <tr>
+                                              <th scope="row">Engine Type</th>
+                                              <td>{{variant.engine_type}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Mileage (ARAI)</th>
+                                              <td>{{variant.mileage_arai}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Dual Clutch</th>
+                                              <td>{{variant.dual_clutch}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Cylinders</th>
+                                              <td>{{variant.cylinders}} mm</td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row">Max Torque (Nm@rpm)</th>
+                                              <td>{{variant.max_torque}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Transmission Type</th>
+                                              <td>{{variant.transmission_type}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Engine Start-Stop Function</th>
+                                              <td>{{variant.engine_start}} mm</td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row">Valve/Cylinder(Configuration)</th>
+                                              <td>{{variant.cylinder_configuration}} mm</td>
+                                            </tr> 
+                                            <tr>
+                                              <th scope="row">Turbocharger/Supercharger</th>
+                                              <td>{{variant.turbocharger}} mm</td>
+                                            </tr> 
+                                             <tr>
+                                              <th scope="row">Sport Mode)</th>
+                                              <td>{{variant.sport_mode}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Fuel Type</th>
+                                              <td>{{variant.fuel_type}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Turbocharger Type</th>
+                                              <td>{{variant.turbocharger_type}} mm</td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row">Manual Shifting for Automatic</th>
+                                              <td>{{variant.manual_shifting}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Displacement</th>
+                                              <td>{{variant.displacement}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Drivetrain</th>
+                                              <td>{{variant.drivetrain}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Alternate Fuel</th>
+                                              <td>{{variant.alternate_fuel}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Max Power (bhp@rpm)</th>
+                                              <td>{{variant.max_power}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">No of gears</th>
+                                              <td>{{variant.no_of_gears}} mm</td>
+                                            </tr>
+                                             <tr>
+                                              <th scope="row">Driving Modes</th>
+                                              <td>{{variant.driving_modes}} mm</td>
+                                            </tr>
+
+
+                                          </tbody>
+                                    </table>
+                                    </div>
+
+                                
+                                </div>
+
+
+                            </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end .b-car-details-->
+               
+
+
+                <!-- end .section-default_top-->
+            </main>
+            <style>
+.header-color-black *, .header.header-color-black .navbar .navbar-nav > li > a{
+        color: #fff;
+}
+.navbar .container{
+        background-color: rgb(199, 22, 34);
+}
+body{
+    margin-top: 60px;
+
+}
+#slider-car-details-video .sp-buttons
+{
+    display: none;
+}
+.table > thead > tr > th
+{
+    border-bottom: 2px solid #999;
+        padding-top: 15px;
+    padding-bottom: 15px;
+}
+.b-car-details__tabs .tab-pane
+{
+    padding: 0;
+}
+.variantTitle {
+  font-size: 15px;
+    color: #0288d1;
+}
+.variantPrice {
+    font-size: 15px;
+    font-weight: 500;
+
+}
+.DealerItem {
+    /* float: left; */
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 15px;
+}
+p.DealerName {
+    font-size: 16px;
+    font-weight: 500;
+}
+p.DealerAddress {
+    margin-top: 10px;
+}
+p.DealerAddress i{
+margin-right: 10px;
+}
+.DealerItem:last-child{
+    border-bottom: none;
+    }
+    p.shortInfo {
+    padding-top: 10px;
+}
+
+
+.b-car-details__title { 
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: .03em;
+    width: 80%;
+    float: left; 
+}
+
+</style>
+            {% endblock %}

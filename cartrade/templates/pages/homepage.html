@@ -1,0 +1,557 @@
+{% extends web_base_template_path %}
+{% block content %}
+
+<div class="l-theme animated-css" data-header="sticky" data-header-top="200" data-canvas="container">
+
+    <div class="main-slider main-slider-2">
+        <div class="slider-pro" id="main-slider" data-slider-width="100%" data-slider-height="7s00px" data-slider-arrows="true" data-slider-buttons="false">
+            <div class="sp-slides">
+                <div class="sp-slide">
+                    <img class="sp-image" src="assets/frappe/assets/media/components/b-main-slider/2.jpg" alt="slider" />
+                    <div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="text-center">
+                                        <h2 class="ui-title-block text-white">Find Your Desired Product </h2>
+                                        <div class="uiv1 ui-decor2" style="background-color: #fff !important;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="b-car-details__tabs tab-content">
+                            <div class="tab-pane active fade in" id="specifications" style="background-color: transparent;">
+
+                                <form class="b-filter">
+
+                                    <div class="">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10">
+                                                    <!-- <h2 class="text-white" style="margin-bottom: 15px;font-size: 24px;font-weight: 300;line-height: 1.08;margin-top: 0px;">Find your Dream Car</h2> -->
+                                                </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-1 col-sm-1">
+                                                </div>
+
+                                                <div class="col-md-3 col-sm-6">
+                                                    <select class="selectpicker" data-width="100%" id="car_brand_select">
+                                                        <option>Select Category</option>
+                                                        {% for u in Categories %}
+
+                                                        <option value="{{u.route}}">{{u.category_name}}</option>
+
+                                                        {% endfor %}
+
+                                                    </select>
+
+                                                </div>
+                                                <div class="col-md-4 col-sm-6">
+
+                                                    <div class="b-filter-2__group">
+                                                        <!-- <div class="b-filter-2__group-title">keyword</div> -->
+                                                        <input class="form-control" type="text" placeholder="Type to select product name" style="    margin-bottom: 2px;" id="search_item">
+                                                 <!--        <div class="global-search-section bg-white padding-bottom20 trendindcars-dumy-class hide homepage-banner-search" style="display: block;">
+                                                            <div class="trending-search">
+                                                                <div class="search-title font12 text-light-grey">Products Lists</div>
+                                                                <ul class="search-list-section" style="      list-style: none;  margin: 0; padding: 0;">
+                                                                    <li><span class="trending-icon cwmsprite padding-right10"></span><a href="/featured/trackday2018/" data-role="click-tracking" data-event="CWInteractive" data-action="trending_click" data-cat="Search_Global_Desktop" data-label="Trackday 2018"><span class="model-search-name">Trackday 2018</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-2 col-sm-6">
+                                                    <div class="">
+                                                        <button class="btn btn-lg btn-primary" id="search_cars">Find Products</button>
+                                                        <br>
+                                                        <!-- <a class="btn-link text-white">Not Sure?   View all Cars here</a> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="tab-pane fade" id="details" style="background-color: transparent;">
+
+                                <form class="b-filter">
+
+                                    <div class=" ">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10">
+                                                    <h2 class="text-white" style="margin-bottom: 15px;font-size: 24px;font-weight: 300;line-height: 1.08;margin-top: 0px;">Find your Dream Bike</h2>
+                                                </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1">
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <select class="selectpicker" data-width="100%" id="bike_brand_select">
+                                                        <option>Select Brand</option>
+
+                                                        {% for u in brand%} {% if u.category == "bikes" %}
+
+                                                        <option>{{u.brand_name}}</option>
+
+                                                        {% endif %} {% endfor %}
+
+                                                    </select>
+
+                                                </div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <select class="selectpicker" data-width="100%" id="bike_model_select">
+                                                        <option>Select Model</option>
+
+                                                        {% for ui in item%} {% if ui.category == "bikes" %}
+
+                                                        <option>{{ui.item_name}}</option>
+
+                                                        {% endif %} {% endfor %}
+
+                                                    </select>
+
+                                                </div>
+
+                                                <div class="col-md-2 col-sm-6">
+                                                    <div class="">
+                                                        <button class="btn btn-lg btn-primary" id="search_bikes">search Bikes</button>
+                                                        <br><a class="btn-link text-white">Not Sure?   View all bikes here</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Slide 1-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <section class="section-advantages-2 section-dark area-bg area-bg_dark parallax">
+
+        <div class="area-bg__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="text-center">
+                            <h2 class="ui-title-block" style="margin-top: 0px;color: black">What We Offers</h2>
+
+                            <div class="ui-decor2" style="color: black"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <a href="cars">
+                            <section class="b-advantages-2 sec-1">
+                                <img src="assets/frappe/assets/media/1-w.png" class="pad-20">
+                                <h3 class="b-advantages-2__title"><strong>Cars</strong></h3>
+
+                            </section>
+                        </a>
+                        <!-- end .b-advantages-->
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="bikes">
+                            <section class="b-advantages-2 sec-1">
+                                <img src="assets/frappe/assets/media/2-w.png" class="pad-20">
+                                <h3 class="b-advantages-2__title"><strong>Bikes</strong></h3>
+                                <!--  <div class="b-advantages-2__info">MotorLand is nisi aliquip ex con velit esse cillum dolore fugiatal excepteur sint occaecat.</div><span class="ui-decor-2"></span> -->
+                            </section>
+                        </a>
+                        <!-- end .b-advantages-->
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="washingmachine">
+                            <section class="b-advantages-2 sec-1">
+                                <img src="assets/frappe/assets/media/4-w.png" class="pad-20">
+                                <h3 class="b-advantages-2__title"><strong>Washing Machine</strong></h3>
+                                <!--  <div class="b-advantages-2__info">MotorLand is nisi aliquip ex con velit esse cillum dolore fugiatal excepteur sint occaecat.</div><span class="ui-decor-2"></span> -->
+                            </section>
+                        </a>
+                        <!-- end .b-advantages-->
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="refrigerator">
+                            <section class="b-advantages-2 sec-1">
+                                <img src="assets/frappe/assets/media/3-w.png" class="pad-20">
+                                <h3 class="b-advantages-2__title"><strong>Refrigerator</strong></h3>
+                                <!-- <div class="b-advantages-2__info">MotorLand is nisi aliquip ex con velit esse cillum dolore fugiatal excepteur sint occaecat.</div><span class="ui-decor-2"></span> -->
+                            </section>
+                        </a>
+                        <!-- end .b-advantages-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- end .section-filter-->
+    <section class="section-default" style="   padding-bottom: 90px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <h2 class="ui-title-block">Recent Products</h2>
+                        <!--   <div class="ui-subtitle-block">Tempor incididunt labore dolore magna alique</div> -->
+                        <div class="ui-decor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container1">
+            <div class="featured-carousel owl-carousel owl-theme owl-theme_w-btn enable-owl-carousel" data-min768="2" data-min992="3" data-min1200="5" data-margin="30" data-pagination="false" data-navigation="true" data-auto-play="4000" data-stop-on-hover="true">
+                      <style type="text/css">
+                    .imte.b-goods-feat__name:before{
+                        display: none
+                    }
+           
+                </style>
+                {% for item in RecentProducts %}
+                <div class="b-goods-feat">
+                    <div class="b-goods-feat__img home-image" style="    min-height: 164px; position: relative; padding-bottom: 100%; ">
+                        <a href="/{{item.BrandUrl}}-{{item.CategoryUrl}}/{{item.route}}">
+                            <img class="img-responsive" src="{{item.featured_image}}" alt="foto" style="width: auto; max-width: 90%; height: auto; max-height: 90%; position: absolute; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); top: 50%; left: 50%;" />
+
+                            <!-- <span class="b-goods-feat__label"><span style="font-family: 'Hind';">₹ </span>{{item.csd_rate}}</span> -->
+
+
+                        </a>
+                    </div>
+                    <h3 class="b-goods-feat__name imte" style="  margin-top: 0px;   margin-bottom: 0px;"><a href="/{{item.BrandUrl}}-{{item.CategoryUrl}}/{{item.route}}">{{item.brandname}} {{item.item_name}}</a></h3>
+                            <span class="b-goods-1__price_th text-primary visible-th" style="     position: relative;
+                        display: block; padding-right: 70px; font-family: Poppins; font-weight: 600;">
+                            <span style="font-family: 'Hind';">₹ </span>{{item.csd_rate}} </span>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="" style="padding-bottom: 90px">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <h2 class="ui-title-block" style="margin-top: 0px;color: black">Brands</h2>
+
+                        <div class="ui-decor2" style="color: black"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="b-car-details__nav nav nav-tabs bg-primary" style="padding: 0 0px;margin-top: 40px;">
+                        {% for category in Categories if category.categorybrands%}
+                        <li class="{% if loop.index==1 %} active {% else %} {% endif %}"><a href="#{{category.route}}" data-toggle="tab">
+                                                         {{category.category_name}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="b-car-details__tabs tab-content">
+                        {% for category in Categories if category.categorybrands | length > 0 %}
+
+                        <div class="{% if loop.index==1 %}tab-pane active fade in{% else %}tab-pane fade{% endif %}" id="{{category.route}}">
+                            
+                            <ul class="b-list-brands list-unstyled">
+                               
+                                {% for b in category.categorybrands%}
+                                    <li class="b-list-brands__item"><a class="b-list-brands__link" href="{{b.route}}-{{category.route}}">{{b.brand_name}}<span class="badge">({{b.count}})</span></a>
+                                    </li>
+                                {% endfor %} 
+                            </ul>
+
+
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- end .b-about-->
+
+    <section class="section-news section-news_mod-a" style="padding-top:0px;padding-bottom: 110px;    background: #f5f5f5;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <h2 class="ui-title-block" style="margin-top: 50px;">Latest News</h2>
+                        <!--  <div class="ui-subtitle-block">Tempor incididunt labore dolore magna clium fugiat alique</div> -->
+                        <div class="ui-decor"></div>
+                    </div>
+                    <div class="carousel-news owl-carousel owl-theme owl-theme_w-btn enable-owl-carousel" data-min768="2" data-min992="3" data-min1200="3" data-margin="30" data-pagination="false" data-navigation="true" data-auto-play="4000" data-stop-on-hover="true">
+
+                        {% for News in LatestNews %}
+                        <section class="b-post b-post-1 clearfix">
+                            <div class="entry-media">
+                                <a href="news/{{News.route}}"><img class="img-responsive" src="{{News.image}}" alt="Foto" /></a>
+                            </div>
+                            <div class="entry-main">
+                                <div class="entry-header">
+                                    <div class="entry-meta">
+                                        <div class="entry-meta__face">
+
+                                        </div><a class="entry-meta__categorie" href="news/{{News.route}}"><strong>{{News.category}}</strong></a>
+                                    </div>
+                                    <h2 class="entry-title"><a href="news/{{News.route}}">{{News.title}} </a></h2>
+                                </div>
+                                <div class="entry-content">
+                                    <p>{{News.description}} </p>
+                                </div>
+                            </div>
+                        </section>
+                        {% endfor %}
+
+                    </div>
+                    <!-- end .carousel-news-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+
+{% block script %}
+<script>{% include "templates/includes/dcsd/homepage.js" %}</script>
+
+<script type="text/javascript">
+    $('#car_brand_select').on('change', function() {
+      $('#search_item').val('');
+    })
+    $(function() {
+    $.widget("custom.catcomplete", $.ui.autocomplete, {
+        _create: function() {
+            this._super();
+            this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+        },
+        _renderMenu: function(ul, items) {
+            // console.log(items)
+            var that = this,
+                currentCategory = "";
+            $.each(items, function(index, item) {
+                var li;
+                // if (item.category != currentCategory) {
+                //     ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+                //     currentCategory = item.category;
+                // }
+                li = that._renderItemData(ul, item);
+                if (item.category) {
+                    li.attr("aria-label", item.category + " : " + item.label);
+                }
+            });
+        }
+    });
+    $("#search_item").catcomplete({
+        delay: 150,
+        autoFocus: true,
+        source: function(request, response) {
+            var car_brand_select = $('#car_brand_select').find(":selected").text()
+            if(car_brand_select == 'Select Category')
+                car_brand_select = '';
+            $.ajax({
+                method: "POST",
+                url: '/',
+                headers: {
+                    Accept: "application/json, text/javascript, */*; q=0.01",
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                data: {
+                    cmd: "frappe.utils.global_search.web_search",
+                    start: 0,
+                    text: car_brand_select.substring(0, 2) +' '+ request.term,
+                    limit: 8,
+                    doctype: 'Item'
+
+                },
+                success: function(data) {
+                    var bty = []
+                    $.each(data.message, function(index, item) {
+                        var parts = item.content;
+                        var part = parts.split('|||')
+                        if (part.length > 3) {
+                            var category =  part[2].split(':')[1];
+                            var brand  = part[1].split(':')[1]
+                            var rr = brand.replace(/-/g, '') + '-' + category + '/';
+                            var route = rr.replace(/ /g, '');
+                            bty.push({
+                                label: part[1].split(':')[1] + item.title,
+                                value: item.title,
+                                content: item.content,
+                                route: route +item.route || ''
+                            })
+                        }
+
+                    })
+                    response(bty)
+
+                }
+            })
+
+        },
+        minLength: 2,
+        select: function(event, ui) {
+            // console.log(ui);
+            location.href = "/" + ui.item.route
+        }
+    });
+
+
+
+});
+</script>
+{% endblock %}        
+
+{% block style %}
+
+<style type="text/css">
+.home-image{
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.b-filter {
+    margin-top: 0px;
+}
+.b-car-details__nav{
+    margin-top: 120px;
+    padding: 0 200px;
+}
+.b-car-details__nav > li.active{
+    background-color: #f4f4f4;
+    box-shadow: 0 -3px 0 0 rgb(199, 22, 34);
+
+    }
+    .ui-decor2{
+            background: #fff;
+    }
+.pad-20{
+        padding: 20px 0px;
+    }
+
+.sec-1{
+    background-color: rgb(199, 22, 34);
+    color: #fff;
+}
+.sec-1 h3{
+    color: #fff;
+}
+
+@media (max-width:767px) {
+.b-car-details__nav{
+        margin-top: 120px;
+    padding: 0 35px;
+}
+}
+@media (min-width:992px) {
+.sp-mask
+{
+    height:400px !important;
+}
+}
+
+@media (min-width: 1200px){
+.container1 { 
+    width: 1275px;
+}
+}
+.container1 {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.area-bg_dark:after {
+    background-color: white;
+}
+.ui-decor2:before, .ui-decor2:after {
+    position: absolute;
+    bottom: -5px;
+    width: 30px;
+    height: 1px;
+    content: '';
+    background: #d01818;
+} 
+.uiv1.ui-decor2:before, .uiv1.ui-decor2:after {
+    position: absolute;
+    bottom: -5px;
+    width: 30px;
+    height: 1px;
+    content: '';
+    background: white !important;
+}
+.ui-decor2 {
+background: #d01818 !important;
+}
+.global-search-section {
+    /*position: absolute;*/
+    width: 100%;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1;
+        background: #FFF;
+}
+.search-title {
+        padding: 10px 15px 6px;
+        font-size: 11px;
+        color: #babfc3;
+    }
+    .search-list-section li {
+        padding: 5px 15px;
+    }
+    .search-list-section li, .text-capitalize {
+        text-transform: capitalize;
+    }
+    .trending-icon {
+        background-position: -211px -22px;
+        width: 27px;
+        height: 12px;
+    }
+    .padding-right10 {
+        padding-right: 10px;
+    }
+
+    .search-list-section li a {
+        width: calc(100% - 35px);
+        display: inline-block;
+        color: #565a5c;
+    }
+</style>
+
+{% endblock %}
+
+{% endblock %}
+

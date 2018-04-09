@@ -1,0 +1,68 @@
+{% extends web_base_template_path %}
+
+{% block content %}
+
+            <main class="l-main-content">
+                   <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <main class="l-main-content">
+                            <div class="posts-group-2">
+                                <section class="b-post b-post-full clearfix">
+                                    <div class="entry-media">
+                                        <a class="js-zoom-images" href="{{news.image}}">
+                                            <img class="img-responsive" src="{{news.image}}" alt="Foto" />
+                                        </a>
+                                    </div>
+                                    <div class="entry-main">
+                                        <div class="entry-meta">
+                                            <div class="entry-meta__group-left">
+                                                <span class="entry-meta__categorie bg-primary">{{news.category}}</span>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="entry-header">
+                                            <h2 class="entry-title"><a href="#">{{news.title}}</a></h2>
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>{{news.description}}</p>
+                                        </div>
+                                     <!--    <div class="entry-footer"><a class="btn btn-default" href="blog-post.html">read more</a>
+                                        </div> -->
+                                    </div>
+                                </section>
+                                <!-- end .post-->
+                              
+                  
+                                <!-- end .b-banner-->
+                        
+                                <!-- end .post-->
+                            </div>
+                   <!--          <ul class="pagination">
+                                <li><a href="#"><i class="icon fa fa-angle-double-left"></i></a>
+                                </li>
+                                <li><a href="#">1</a>
+                                </li>
+                                <li class="active"><a href="#">2</a>
+                                </li>
+                                <li><a href="#">3</a>
+                                </li>
+                                <li><a href="#"><i class="icon fa fa-angle-double-right"></i></a>
+                                </li>
+                            </ul> -->
+                        </main>
+                        <!-- end .l-main-content-->
+                    </div>
+                    <div class="col-md-4">
+                      
+                    
+
+                    
+                    </div>
+                </div>
+            </div>
+                <!-- end .b-car-details-->
+              
+                <!-- end .section-default_top-->
+            </main>
+{% endblock %}

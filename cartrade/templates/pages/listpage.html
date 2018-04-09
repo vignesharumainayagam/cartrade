@@ -1,0 +1,250 @@
+{% extends web_base_template_path %}
+
+{% block head %}
+        {% block meta_block %}
+      <meta itemprop="description" name="description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+         <meta itemprop="keywords" name="keywords" content="{% if MetaKeywords %}{{MetaKeywords}}{% endif %}"  />
+         <meta property="og:url" content="{{CurrentUrl}}">
+         <meta property="og:type" content="website">
+         <meta property="og:title"  content="{% if title %}{{title}}{% endif %}" >
+         <meta property="og:description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+        {% endblock %}
+ {% endblock %}
+{% block content %}
+
+
+<div class="bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li><a href="/"><i class="icon fa fa-home"></i></a>
+                                </li>
+                                 <li><a href="/{{Category[0].route}}">{{Category[0].category_name}}</a>
+                                </li>
+                                <li class="active">{{Brand[0].brand_name}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <main class="l-main-content">
+                            <div class="filter-goods">
+                               
+                                <div class="filter-goods__select"><span class="hidden-xs">Sort</span>
+                                    <select class="selectpicker" data-width="172">
+                                        <option>Most Revelant</option>
+                                        <option>A-Z</option>
+                                        <option>Z-A</option>
+                                    </select>
+                                    <div class="btns-switch"><i class="btns-switch__item active js-view-th icon fa fa-th-large"></i><i class="btns-switch__item js-view-list  icon fa fa-th-list"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <style type="text/css">
+                                        .list-goods_th .b-goods-1__img{
+                                            text-align: center; min-height: 164px; position: relative; padding-bottom: 100%;
+                                        }  
+                                     .list-goods_th .b-goods-1{
+                                            width: 25%;
+                                        }
+                                        .b-goods-1__img{
+                                            text-align: center; min-height: 164px; position: relative; 
+                                        }
+
+                                        .list-goods_th .img-responsive1 {
+                                            width: auto; max-width: 90%; height: auto; max-height: 90%; position: absolute; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); top: 50%; left: 50%;
+                                        }
+                                        .img-responsive1 {
+                                            width: auto; max-width: 90%; height: auto; max-height: 90%; position: absolute; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); top: 50%; left: 50%;
+                                        }
+                                    </style>
+                            <!-- end .filter-goods-->
+                            <div class="goods-group-2 list-goods list-goods_th">
+                                {% if ItemList|length >= 1 %}
+
+                                {% for item in ItemList %}
+                                <section class="b-goods-1" style="    ">
+
+
+                                    <div class="row">
+                                        <div class="b-goods-1__img" style="    ">
+                                            <a  href="/{{item.BrandUrl}}-{{item.CategoryUrl}}/{{item.route}}">
+                                                <img class="img-responsive img-responsive1"  src="{{item.featured_image}}" alt="{{item.featured_image}}"  style="" />
+                                            </a>
+                                        </div>
+                                        <div class="b-goods-1__inner">
+                                            <div class="b-goods-1__header" style="    margin-bottom: 5px;"><span class="b-goods-1__price hidden-th"><span style="font-family: 'Hind';">₹ </span>{{item.csd_rate}}</span><a class="b-goods-1__choose hidden-th" href="listing.html"><i class="icon fa fa-heart-o"></i></a>
+                                                <h2 class="b-goods-1__name" style="font-weight: 500;     text-transform: capitalize;font-size: 15px;    margin-top: 13px;"><a  href="/{{item.BrandUrl}}-{{item.CategoryUrl}}/{{item.route}}">{{item.brand}} {{item.item_name}}</a></h2>
+                                            </div>
+                                            <!-- <div class="b-goods-1__info">{{item.short_description}}</span> </div> -->
+                                            <span class="b-goods-1__price_th text-primary visible-th"><span style="font-family: 'Hind';">₹ </span>{{item.market_rate}}
+                                            
+                                            <a class="b-goods-1__choose" href="listing.html"></a>
+                                            </span>
+                                
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {% endfor %}
+                                {% endif %}
+                                {% if ItemList|length == 0 %}
+                                <span class="norecords">No records found</span>
+                                {% endif %}
+                            </div>
+          
+                        </main>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <aside class="l-sidebar">
+                            <form class="b-filter-2 bg-grey">
+                                <h3 class="b-filter-2__title">search options</h3>
+                                <div class="b-filter-2__inner">
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">keyword</div>
+                                        <input class="form-control" type="text" placeholder="Keyword..." />
+                                    </div>
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">Vehicle Type</div>
+                                        <select class="selectpicker" data-width="100%">
+                                            <option>All Types</option>
+                                            <option>Type 1</option>
+                                            <option>Type 2</option>
+                                            <option>Type 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">Make</div>
+                                        <select class="selectpicker" data-width="100%">
+                                            <option>All Makes</option>
+                                            <option>Make 1</option>
+                                            <option>Make 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">Model</div>
+                                        <select class="selectpicker" data-width="100%">
+                                            <option>All Models</option>
+                                            <option>Model 1</option>
+                                            <option>Model 2</option>
+                                            <option>Model 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">Model Year</div>
+                                        <select class="selectpicker" data-width="100%">
+                                            <option>Min Year</option>
+                                            <option>Year 1</option>
+                                            <option>Year 2</option>
+                                        </select>
+                                        <select class="selectpicker" data-width="100%">
+                                            <option>Max Year</option>
+                                            <option>Year 1</option>
+                                            <option>Year 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">fuel type</div>
+                                        <select class="selectpicker" data-width="100%">
+                                            <option>All Fuel Types</option>
+                                            <option>Type 1</option>
+                                            <option>Type 2</option>
+                                            <option>Type 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">Filter Price</div>
+                                        <div class="ui-filter-slider">
+                                            <div id="slider-price"></div>
+                                            <div class="ui-filter-slider__info">
+                                                <div class="ui-filter-slider__label">Price Range:</div><span class="ui-filter-slider__current" id="slider-snap-value-lower"></span>-<span class="ui-filter-slider__current" id="slider-snap-value-upper"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                             
+                                    <div class="b-filter-2__group">
+                                        <div class="b-filter-2__group-title">TRANSMISSION</div>
+                                        <div class="checkbox-group">
+                                            <input class="forms__check hidden" id="check-1" type="checkbox" />
+                                            <label class="forms__label forms__label-check forms__label-check-1" for="check-1">4 Speed Automatic</label>
+                                            <input class="forms__check hidden" id="check-2" type="checkbox" />
+                                            <label class="forms__label forms__label-check forms__label-check-1" for="check-2">4 Speed Manual</label>
+                                            <input class="forms__check hidden" id="check-3" type="checkbox" checked="checked" />
+                                            <label class="forms__label forms__label-check forms__label-check-1" for="check-3">5 Speed Automatic</label>
+                                            <input class="forms__check hidden" id="check-4" type="checkbox" />
+                                            <label class="forms__label forms__label-check forms__label-check-1" for="check-4">5 Speed Manual</label>
+                                            <input class="forms__check hidden" id="check-5" type="checkbox" checked="checked" />
+                                            <label class="forms__label forms__label-check forms__label-check-1" for="check-5">6-Speed Semi-Auto</label>
+                                            <input class="forms__check hidden" id="check-6" type="checkbox" />
+                                            <label class="forms__label forms__label-check forms__label-check-1" for="check-6">6-Speed Manual</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            end .b-filter--> 
+                        </aside>
+                        <!-- end .l-sidebar-->
+                    </div>
+                </div>
+            </div>
+<style>
+.header-color-black *, .header.header-color-black .navbar .navbar-nav > li > a{
+        color: #fff;
+}
+.navbar .container{
+        background-color: rgb(199, 22, 34);
+}
+body{
+    margin-top: 60px;
+
+}
+span.norecords {
+    float: left;
+    width: 100%;
+    text-align: center;
+    background: #c71622;
+    color: #fff;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 0;
+}
+</style>
+
+<script type="text/javascript">
+    
+
+
+$(document).ready(function(){
+$(window).scroll(function() { 
+if($(window).scrollTop() + $(window).height() == $(document).height()) {  
+var path = window.location.pathname.replace("/","")
+var path = path.split("-")
+var brand = path[0].toLocaleLowerCase()
+var category = path[1].toLocaleLowerCase()
+
+    frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+            doctype: "Item",
+            order_by: "name",
+            // limit_start: 20,
+            // limit_page_length: 20,
+            fields: ['item_name','category','csd_rate','market_rate','route','featured_image','short_description','brand'],
+            filters: {'brand':brand, 'category':category}
+
+        },
+        callback: function(r){
+            console.log(r.message)
+        }
+    });
+
+} 
+});
+});
+</script>
+            {% endblock %}

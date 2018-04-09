@@ -1,0 +1,338 @@
+{% extends web_base_template_path %}
+
+
+
+{% block head %}
+        {% block meta_block %}
+         <meta itemprop="description" name="description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+         <meta itemprop="keywords" name="keywords" content="{% if MetaKeywords %}{{MetaKeywords}}{% endif %}"  />
+         <meta property="og:url" content="{{CurrentUrl}}">
+         <meta property="og:type" content="website">
+         <meta property="og:title"  content="{% if title %}{{title}}{% endif %}" >
+         <meta property="og:description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+        {% endblock %}
+ {% endblock %}
+
+
+
+{% block content %}
+
+
+   <div class="bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li><a href="/{{category_route}}"><i class="icon fa fa-home"></i></a>
+                                </li>
+                                <li><a href="/{{brand_route}}-{{category_route}}">{{item_brand}}</a>
+                                </li>
+                                <li class="active">{{item_name}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end breadcrumb-->
+            <main class="l-main-content">
+                <div class="container">
+                    <div class="row">
+                         <div class="col-md-9">
+
+                                    <style type="text/css">
+                                       .csd-goods-1__img{
+                                            text-align: center; min-height: 164px; position: relative; padding-bottom: 100%;
+                                        }
+
+                                        .img-responsive1 {
+                                            width: auto; max-width: 90%; height: auto; max-height: 90%; position: absolute; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); top: 50%; left: 50%;
+                                        }
+                                    </style>
+                            <section class="b-car-details">
+                                <div class="b-car-details__header" style="    padding-bottom: 10px;">
+
+                                    <h2 class="b-car-details__title">{{item_brand}} {{item_name}} </h2>
+                              
+
+                                </div>
+                                <div class="col-md-6">
+                                 <div class="entry-media csd-goods-1__img">
+
+                                            <img class="img-responsive img-responsive1 " src="{{featured_image}}" alt="Foto" />
+                                 
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-top: 20px;">
+                                    <div class="col-md-12" style="padding-bottom: 20px;">
+                                        
+                                             <div class="b-car-info__price" style="font-size: 24px;border: 3px solid #eee;background: transparent;color: #222;"><span style="font-family: 'Hind';">CSD Price - ₹ </span>{{base_price}}
+                                    </div>
+                                    </div>
+
+
+                                        <div class="col-md-6">
+                
+                                       <select class="selectpicker" data-width="100%">
+                                        <option>Select Variant</option>
+                                        {% for i in item_variants%}
+
+                                        <option>{{i.variant_name}}</option>
+
+                                        {% endfor %}
+                     
+                                    </select>
+
+                                   
+                                     </div>
+
+                                    <div class="col-md-6">
+                                          <select class="selectpicker" data-width="100%">
+                                        <option>Select Location</option>
+
+                                        {% for i in locations%}
+
+                                        <option>{{i.city_name}}</option>
+
+                                        {% endfor %}                                                
+                            
+                                    </select>
+
+                                    </div>
+                                    <a href="{{path}}/images">
+                                    <div style="margin-left: 15px;">
+                                    <button class="btn btn-lg btn-primary">Open Gallery</button>
+                                    </div></a>
+
+                                </div>
+                                 <div class="col-md-12">
+                                <!-- end .b-thumb-slider-->
+                                <div class="b-car-details__section ">
+                                    <h3 class="b-car-details__section-title ui-title-inner">Overview</h3>
+                                  
+                                    <p>{{short_description}}</p>
+                                </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                <ul class="b-car-details__nav nav nav-tabs bg-primary">
+                                    <li class="active"><a href="#specifications" data-toggle="tab">Variants</a>
+                                    </li>
+                                 <li><a href="#dealers" data-toggle="tab">Dealers</a>
+                                    </li>
+                               
+                                </ul>
+                                <div class="b-car-details__tabs tab-content">
+                                    <div class="tab-pane active fade in" id="specifications" style="    padding: 20px 20px 20px;">
+                                        
+                                     <table class="table">
+                                          <thead>
+                                            <tr>
+                                              <th scope="col">Variant name</th>
+                                              <th scope="col">Price</th>
+                                           
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+
+                                                {% for i in item_variants%}
+
+                                                    <tr>
+                                                      
+                                                      <th scope="row" class="variants">
+                                                        <a href="{{path}}/{{i.route}}">{{i.variant_name}}</a>
+                                                      </th>
+                                                      
+                                                      {% if i.variant_price_for_selected_city %}
+
+                                                      <td><span style="font-family: 'Hind';">₹ </span>{{i.variant_price_for_selected_city}}</td>
+                                          
+                                                      
+                                                      {% else %}
+
+                                                      <td><span style="font-family: 'Hind';">₹ </span>{{i.variant_price_for_delhi}}</td>
+
+                                                      {% endif %}
+
+                                                    </tr>
+
+                                                {% endfor %}
+
+                                   
+                                          </tbody>
+                                    </table>
+
+                                      
+                                    </div>
+                                    <div class="tab-pane fade in" id="dealers" style="    padding: 20px 20px 20px;">
+
+                          
+
+                                    {% if dealers_in_selected_city %}
+                                         
+                                         {% for y in dealers_in_selected_city%}
+                                             
+                                            
+                                             
+                                             <div class="DealerItem">
+                                              <a href="/{{brand_route}}-{{category_route}}/{{item_route}}/dealers/{{y.route}}" style="color: #222 !important">
+                                             <p class="DealerName">{{y.dealer_name}}</p>
+                                             <p class="DealerAddress"><i class="fa fa-map-marker"></i>{{y.dealer_address}}</p>
+                                             
+                                             <p class="DealerAddress">
+                                               <i class="fa fa-phone"></i>{{y.dealer_phone}}   
+                                             </p>
+                                              </a>
+                                             </div>
+                                             
+                                            
+
+                                         {% endfor %}
+
+                                         {% if dealers_in_selected_city|length > 9 %}
+
+                                           <a href="/{{brand_route}}-{{category_route}}/{{item_route}}/dealers"><p>Show More</p></a>
+
+                                         {% endif %} 
+
+
+                                    {% else %}     
+
+                                         {% for ty in dealers_in_delhi%}
+                                             
+                                            
+
+                                             
+                                             <div class="DealerItem">
+                                              <a href="/{{brand_route}}-{{category_route}}/{{item_route}}/dealers/{{ty.route}}" style="color: #222 !important">
+                                             <p class="DealerName">{{ty.dealer_name}}</p>
+                                             <p class="DealerAddress"><i class="fa fa-map-marker"></i>{{ty.dealer_address}}</p>
+                                             
+                                             <p class="DealerAddress">
+                                               <i class="fa fa-phone"></i>{{ty.dealer_phone}}   
+                                             </p>
+                                             </a>
+                                             </div>
+                                           
+                                            
+
+                                         {% endfor %}
+
+                                         {% if dealers_in_delhi|length > 9 %}
+
+                                           <a href="/{{brand_route}}-{{category_route}}/{{item_route}}/dealers"><p>Show More</p></a>
+
+
+                                         {% endif %}
+
+
+
+
+                                    {% endif %} 
+
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end .b-car-details-->
+               
+
+
+                <!-- end .section-default_top-->
+            </main>
+            <style>
+}
+}
+.header-color-black *, .header.header-color-black .navbar .navbar-nav > li > a{
+        color: #fff;
+}
+.navbar .container{
+        background-color: rgb(199, 22, 34);
+}
+body{
+    margin-top: 60px;
+
+}
+#slider-car-details-video .sp-buttons
+{
+    display: none;
+}
+.table > thead > tr > th
+{
+    border-bottom: 2px solid #999;
+        padding-top: 15px;
+    padding-bottom: 15px;
+}
+.b-car-details__tabs .tab-pane
+{
+    padding: 0;
+}
+.variantTitle {
+  font-size: 15px;
+    color: #0288d1;
+}
+.variantPrice {
+    font-size: 15px;
+    font-weight: 500;
+
+}
+.DealerItem {
+    /* float: left; */
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 15px;
+}
+p.DealerName {
+    font-size: 16px;
+    font-weight: 500;
+}
+p.DealerAddress {
+    margin-top: 10px;
+}
+p.DealerAddress i{
+margin-right: 10px;
+}
+.DealerItem:last-child{
+    border-bottom: none;
+    }
+    p.shortInfo {
+    padding-top: 10px;
+}
+
+
+.b-car-details__title { 
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: .03em;
+    width: 80%;
+    float: left; 
+}
+
+.variants a {
+  color: #222 !important;
+
+}
+
+.variants a:hover{
+  color: #d01818 !important;
+  
+}
+
+.DealerItem a:hover{
+  color: #d01818 !important;
+  
+}
+
+</style>
+            {% endblock %}

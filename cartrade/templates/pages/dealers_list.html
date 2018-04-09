@@ -1,0 +1,214 @@
+{% extends web_base_template_path %}
+{% block head %}
+        {% block meta_block %}
+         <meta itemprop="description" name="description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+         <meta itemprop="keywords" name="keywords" content="{% if MetaKeywords %}{{MetaKeywords}}{% endif %}"  />
+         <meta property="og:url" content="{{CurrentUrl}}">
+         <meta property="og:type" content="website">
+         <meta property="og:title"  content="{% if title %}{{title}}{% endif %}" >
+         <meta property="og:description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+        {% endblock %}
+ {% endblock %}
+{% block content %}
+      <div class="bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li><a href="/homepage"><i class="icon fa fa-home"></i></a>
+                                </li>
+                                <li><a href="/{{brand_route}}-{{category_route}}">{{brand_name}}</a>
+                                </li>
+                                <li class="active"> <a href="/{{brand_route}}-{{category_route}}/{{item_route}}"> {{item_name}} </a> </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end breadcrumb-->
+            <main class="l-main-content">
+                <div class="container">
+                    <div class="row">
+                         <div class="col-md-9">
+                            <section class="b-car-details">
+                                <div class="b-car-details__header">
+                         
+                                    <h2 class="b-car-details__title">Dealers</h2>
+                                  <!--   <div class="b-car-details__subtitle">AWD 430i xSmart Drive Coupe</div> -->
+                           
+                           
+                        
+
+
+                                </div>
+
+
+                         
+                                    {% if dealers_in_selected_city %}
+                                         
+                                         {% for y in dealers_in_selected_city%}
+                                             
+                                                        
+                                      <div class="dealer-list">
+
+                                                 <h5>{{y.dealer_name}}</h5>
+
+                                                 <ul>
+                                                    <li><i class="fa fa-map-marker"></i>{{y.dealer_address}}</li>
+
+                                                      <li><i class="fa fa-phone"></i>{{y.dealer_phone}}</li>
+                                                     
+                                                   
+                                                </ul>
+                                                <a href="/{{brand_route}}-{{category_route}}/{{item_route}}/dealers/{{y.route}}">
+                                                <button class="btn btn-lg btn-primary mt-20">See Dealer Deatials</button>
+                                                </a>
+
+                                    
+                                            </div>
+                                             
+                                            
+
+                                         {% endfor %}
+
+
+
+                                    {% else %}     
+
+                                         {% for j in dealers_in_delhi %}
+                                             
+                                         <div class="dealer-list">
+
+                                                 <h5>{{j.dealer_name}}</h5>
+
+                                                 <ul>
+                                                    <li><i class="fa fa-map-marker"></i>{{j.dealer_address}}</li>
+
+                                                      <li><i class="fa fa-phone"></i>{{j.dealer_phone}}</li>
+                                                     
+                                                   
+                                                </ul>
+                                                <a href="/{{brand_route}}-{{category_route}}/{{item_route}}/dealers/{{j.route}}">
+                                                <button class="btn btn-lg btn-primary mt-20">See Dealer Deatials</button>
+                                                </a>
+
+                                    
+                                            </div>
+                                            
+
+                                         {% endfor %}
+
+
+
+
+
+                                    {% endif %} 
+                    
+                       
+                          
+                            </section>
+       
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end .b-car-details-->
+               
+
+
+                <!-- end .section-default_top-->
+            </main>
+
+          
+            <style>
+.header-color-black *, .header.header-color-black .navbar .navbar-nav > li > a{
+        color: #fff;
+}
+.navbar .container{
+        background-color: rgb(199, 22, 34);
+}
+body{
+    margin-top: 60px;
+
+}
+.dealer-list ul{
+    list-style: none;
+}
+.dealer-list li i{
+    padding-right: 15px;
+    padding-top:10px;
+}
+
+.dealer-list{
+    border: 1px solid #eee;
+    padding: 15px 20px;
+    background: #f4f4f4;
+     margin-top: 20px
+}
+.mt-20{
+    margin-top: 20px
+}
+#slider-car-details-video .sp-buttons
+{
+    display: none;
+}
+.table > thead > tr > th
+{
+    border-bottom: 2px solid #999;
+        padding-top: 15px;
+    padding-bottom: 15px;
+}
+.b-car-details__tabs .tab-pane
+{
+    padding: 0;
+}
+.variantTitle {
+  font-size: 15px;
+    color: #0288d1;
+}
+.variantPrice {
+    font-size: 15px;
+    font-weight: 500;
+
+}
+.DealerItem {
+    /* float: left; */
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 15px;
+}
+p.DealerName {
+    font-size: 16px;
+    font-weight: 500;
+}
+p.DealerAddress {
+    margin-top: 10px;
+}
+p.DealerAddress i{
+margin-right: 10px;
+}
+.DealerItem:last-child{
+    border-bottom: none;
+    }
+    p.shortInfo {
+    padding-top: 10px;
+}
+
+
+.b-car-details__title { 
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: .03em;
+    width: 80%;
+    float: left; 
+}
+
+</style>
+            {% endblock %}

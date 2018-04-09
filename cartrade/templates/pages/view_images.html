@@ -1,0 +1,325 @@
+{% extends web_base_template_path %}
+
+
+
+{% block head %}
+        {% block meta_block %}
+         <meta itemprop="description" name="description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+         <meta itemprop="keywords" name="keywords" content="{% if MetaKeywords %}{{MetaKeywords}}{% endif %}"  />
+         <meta property="og:url" content="{{CurrentUrl}}">
+         <meta property="og:type" content="website">
+         <meta property="og:title"  content="{% if title %}{{title}}{% endif %}" >
+         <meta property="og:description" content="{% if MetaDescription %}{{MetaDescription}}{% endif %}" />
+        {% endblock %}
+ {% endblock %}
+
+
+
+{% block content %}
+
+
+
+   <div class="bg-grey">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li><a href="index.html"><i class="icon fa fa-home"></i></a>
+                                </li>
+                                <li><a href="/{{category_route}}">{{category_name}}</a>
+                                </li>
+                                <li><a href="/{{brand_route}}-{{category_route}}">{{brand_name}}</a>
+                                </li>
+                                <li><a href="/{{brand_route}}-{{category_route}}/{{item_route}}">{{item_name}}</a>
+                                </li>
+
+                                {% if variant_name %}
+                                <li><a href="/{{brand_route}}-{{category_route}}/{{item_route}}/{{variant_route}}">{{variant_name}}</a>
+                                </li>
+                                {% endif %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end breadcrumb-->
+            <main class="l-main-content">
+                <div class="container">
+                    <div class="row">
+                         <div class="col-md-9">
+                            <section class="b-car-details">
+                                <div class="b-car-details__header">
+
+                                    <h2 class="b-car-details__title">{{brand_name}} {{item_name}}  </h2>
+                              
+
+                                </div>
+                                <div class="col-md-12">
+
+                                            <img class="img-responsive" src="{{item_featured_image}}" alt="Foto" data-source="{{item_featured_image}}" />
+
+
+                                </div>
+                          
+                                 <div class="col-md-12">
+                                <!-- end .b-thumb-slider-->
+                          
+                                 </div>
+                                 <div class="col-md-12">
+                                <ul class="b-car-details__nav nav nav-tabs bg-primary">
+                                    <li class="active"><a href="#specifications" data-toggle="tab">Images </a>
+                                    </li>
+                          
+                               
+                                </ul>
+                                <div class="b-car-details__tabs tab-content">
+                                    <div class="tab-pane active fade in" id="specifications" style="padding: 20px 20px 20px;">
+                        <div class="row">
+                          <style type="text/css">
+                            .vicky{
+                                  text-align: center;
+    min-height: 164px;
+    position: relative;
+                            }
+                            .vicky1{
+                                  width: auto;
+    max-width: 90%;
+    height: auto;
+    max-height: 90%;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+                            }
+                          </style>
+                            <div class="col-xs-12">
+                                
+                                      <div class="col-md-4 col-xs-6 vicky">  
+
+                                        <a href="https://auto.ndtvimg.com/bike-images/big/suzuki/gsx-r1000r/suzuki-gsx-r1000r.jpg?v=2" data-fancybox="group" >
+                                            <img src="https://auto.ndtvimg.com/bike-images/big/suzuki/gsx-r1000r/suzuki-gsx-r1000r.jpg?v=2" alt="" class="width-100 vicky1" />
+                                        </a>
+                                    </div>
+                                      <div class="col-md-4 col-xs-6 vicky">  
+
+                                        <a href="https://auto.ndtvimg.com/bike-images/big/suzuki/gsx-r1000r/suzuki-gsx-r1000r.jpg?v=2" data-fancybox="group" >
+                                            <img src="https://auto.ndtvimg.com/bike-images/big/suzuki/gsx-r1000r/suzuki-gsx-r1000r.jpg?v=2" alt="" class="width-100 vicky1" />
+                                        </a>
+                                    </div>
+                                      <div class="col-md-4 col-xs-6 vicky">  
+
+                                        <a href="https://auto.ndtvimg.com/bike-images/big/suzuki/gsx-r1000r/suzuki-gsx-r1000r.jpg?v=2" data-fancybox="group" >
+                                            <img src="https://auto.ndtvimg.com/bike-images/big/suzuki/gsx-r1000r/suzuki-gsx-r1000r.jpg?v=2" alt="" class="width-100 vicky1" />
+                                        </a>
+                                    </div>                                    
+                            </div></div>
+
+
+
+                                      
+                                    </div>
+                                    <div class="tab-pane fade in" id="dealers" style="    padding: 20px 20px 20px;">
+
+                          
+
+                                    {% if dealers_in_selected_city %}
+                                         
+                                         {% for y in dealers_in_selected_city%}
+                                             
+                                            
+
+                                             <div class="DealerItem">
+                                             <p class="DealerName">{{y.dealer_name}}</p>
+                                             <p class="DealerAddress"><i class="fa fa-map-marker"></i>{{y.dealer_address}}</p>
+                                             
+                                             <p class="DealerAddress">
+                                               <i class="fa fa-phone"></i>{{y.dealer_phone}}   
+                                             </p>
+                                             
+                                             </div>
+                                            
+
+                                         {% endfor %}
+
+                                    {% else %}     
+
+                                         {% for ty in dealers_in_chennai%}
+                                             
+                                            
+
+
+                                             <div class="DealerItem">
+                                             <p class="DealerName">{{ty.dealer_name}}</p>
+                                             <p class="DealerAddress"><i class="fa fa-map-marker"></i>{{ty.dealer_address}}</p>
+                                             
+                                             <p class="DealerAddress">
+                                               <i class="fa fa-phone"></i>{{ty.dealer_phone}}   
+                                             </p>
+                                             
+                                             </div>
+                                            
+
+                                         {% endfor %}
+
+                                    {% endif %} 
+
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            </section>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end .b-car-details-->
+               
+
+
+                <!-- end .section-default_top-->
+            </main>
+            <style>
+}
+}
+.header-color-black *, .header.header-color-black .navbar .navbar-nav > li > a{
+        color: #fff;
+}
+.navbar .container{
+        background-color: rgb(199, 22, 34);
+}
+body{
+    margin-top: 60px;
+
+}
+#slider-car-details-video .sp-buttons
+{
+    display: none;
+}
+.table > thead > tr > th
+{
+    border-bottom: 2px solid #999;
+        padding-top: 15px;
+    padding-bottom: 15px;
+}
+.b-car-details__tabs .tab-pane
+{
+    padding: 0;
+}
+.variantTitle {
+  font-size: 15px;
+    color: #0288d1;
+}
+.variantPrice {
+    font-size: 15px;
+    font-weight: 500;
+
+}
+.DealerItem {
+    /* float: left; */
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 15px;
+}
+p.DealerName {
+    font-size: 16px;
+    font-weight: 500;
+}
+p.DealerAddress {
+    margin-top: 10px;
+}
+p.DealerAddress i{
+margin-right: 10px;
+}
+.DealerItem:last-child{
+    border-bottom: none;
+    }
+    p.shortInfo {
+    padding-top: 10px;
+}
+
+
+.b-car-details__title { 
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: .03em;
+    width: 80%;
+    float: left; 
+}
+
+</style>
+            {% endblock %}
+
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+  $('.zoom-gallery').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    closeOnContentClick: false,
+    closeBtnInside: false,
+    mainClass: 'mfp-with-zoom mfp-img-mobile',
+    image: {
+      verticalFit: true,
+      titleSrc: function(item) {
+        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+      }
+    },
+    gallery: {
+      enabled: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300, // don't foget to change the duration also in CSS
+      opener: function(element) {
+        return element.find('img');
+      }
+    }
+    
+  });
+});
+</script>
+
+<style type="text/css">
+  
+  .image-source-link {
+  color: #98C3D1;
+}
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  /* ideally, transition speed should match zoom duration */
+  -webkit-transition: all 0.3s ease-out; 
+  -moz-transition: all 0.3s ease-out; 
+  -o-transition: all 0.3s ease-out; 
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+    opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+    opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container, 
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+.width-100{
+  width: 100% !important;
+}
+</style>
+
+
